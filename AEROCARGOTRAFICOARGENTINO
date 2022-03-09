@@ -1,0 +1,343 @@
+CREATE DATABASE IF NOT EXISTS aerocargo_trafico_argentina;
+
+USE aerocargo_trafico_argentina;
+
+CREATE TABLE IF NOT EXISTS AEROPUERTOS(
+ID_AEROPUERTOS VARCHAR(200) PRIMARY KEY,
+NOMBRE varchar(200),
+UBICACION varchar(200)
+);
+
+CREATE TABLE IF NOT EXISTS MOVIMIENTOS(
+ID_MOVIMIENTOS VARCHAR(200) PRIMARY KEY,
+TIPO_DE_MOVIMIENTO VARCHAR(200)
+);
+
+CREATE TABLE IF NOT EXISTS AEROLINEAS(
+ID_AEROLINEA VARCHAR(200) PRIMARY KEY,
+NOMBRE_AEROLINEA VARCHAR(200),
+ID_AEROPUERTOS VARCHAR(200),
+ID_MOVIMIENTOS VARCHAR(200),
+FOREIGN KEY (ID_AEROPUERTOS) REFERENCES aerocargo_trafico_argentina.AEROPUERTOS(ID_AEROPUERTOS),
+FOREIGN KEY (ID_MOVIMIENTOS) REFERENCES aerocargo_trafico_argentina.MOVIMIENTOS(ID_MOVIMIENTOS)
+);
+CREATE TABLE IF NOT EXISTS VUELOS(
+CODIGO_DE_VUELO varchar(200) PRIMARY KEY,
+FECHA DATE,
+HORA TIME,
+ORIGEN VARCHAR(200),
+DESTINO VARCHAR(200),
+ID_MOVIMIENTO VARCHAR(200),
+FOREIGN KEY (ID_MOVIMIENTOS) REFERENCES aerocargo_trafico_argentina.MOVIMIENTOS(ID_MOVIMIENTOS)
+);
+
+CREATE TABLE IF NOT EXISTS PASAJEROS(
+DNI INT NOT NULL PRIMARY KEY,
+NOMBRE VARCHAR(200),
+MEDIOS_DE_PAGO VARCHAR(200),
+CODIGO_DE_VUELO VARCHAR(200),
+FOREIGN KEY (CODIGO_DE_VUELO) REFERENCES aerocargo_trafico_argentina.VUELOS(CODIGO_DE_VUELO)
+);
+
+CREATE TABLE IF NOT EXISTS PASAJEROSespejo(
+DNI INT NOT NULL PRIMARY KEY,
+NOMBRE VARCHAR(200),
+MEDIOS_DE_PAGO VARCHAR(200),
+CODIGO_DE_VUELO VARCHAR(200),
+FOREIGN KEY (CODIGO_DE_VUELO) REFERENCES aerocargo_trafico_argentina.VUELOS(CODIGO_DE_VUELO)
+);
+
+
+
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('4Q','  China Yunnan Airlines','GLP','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('5C','  C.A.L. Cargo Airlines','GOZ','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('5U','  L.A.D.E. Líneas Aéreas del Estado','CFU','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('5X','  UPS','GAL','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('5Z','  Airfreight Express Ltd.','GAL','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('6A','  AVIACSA','CUM','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('7F','  Finnair Air','FDD','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('7Q','  Air Venezuela L.T.A.','CHJ','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('8G','  Gulf & Caribbean Cargo','GBL','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('9E','  Express Airlines, Inc.','GAL','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('A2','  Cielos del Peru S.A.','GEP','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('A4','  Southern Winds S.A.','FAG','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AA','  American Airlines','ALT','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AC','  Air Canada','ALT','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AF','  Air France','CLE','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AH','  Air Algerie','DOR','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AI','  Air India Ltd.','CVV','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('ALA','Austral Líneas Aéreas','ACB','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AM','  Aeroméxico','DRX','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AN','  Ansett Australia','CTA','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AO','  Aviación Y Comercio S.A. (Aviaco)','DIA','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AP','Avianca Perú','ADU','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AR','  Aerolíneas Argentinas','CHP','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AS','  Alaska Airlines Inc.','CHC','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AT','  Royal Air Maroc','DRY','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AU','  Cielos del Sur/Austral Líneas Aéreas','DRX','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AV','  Avianca','DRX','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('AZ','  Alitalia – Linee Aeree Italiane','CLD','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('BA','  British Airways P.L.C.','DOZ','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('BD','  British Midland Airways Ltd.','FAE','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('BL','  Pacific Airlines Co. Ltd.','GIL','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('BN','  Forward Air International Airlines','GAS','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('BR','  EVA Airways Corporation','GOY','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('BX','  Coast Air K.S.','HBC','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CA','Conviasa','AJA','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CI','  China Airlines','FRA','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CJ','  China Northern Airlines','GTE','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CK','  China Cargo Airlines Ltd.','DIA','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CL','  Lufthansa CityLine GmbH','GOY','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CM','  COPA','EVC','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CO','  Continental Airlines, Inc.','ALT','2I');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CP','  Canadian Airlines International','CED','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CU','  Cubana de Aviación S.A.','DRX','1N');
+INSERT INTO aerocargo_trafico_argentina.aerolineas (`ID_AEROLINEA`,`NOMBRE_AEROLINEA`,`ID_AEROPUERTOS`,`ID_MOVIMIENTOS`) VALUES ('CV','  Cargolux Airlines International','ELZ','1N');
+
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ACB','CORONEL BOGADO - AGROSERVICIOS','SANTA FE');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ACH','GENERAL ACHA','LA PAMPA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ACM','ARRECIFES - LA CURA MALAL','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ADO','PUERTO DESEADO','SANTA CRUZ');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ADT','BANDERA - AGROSERVICIOS DOÑA TERESA','SANTIAGO DEL ESTERO');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ADU','BANDERA - DUTTO','SANTIAGO DEL ESTERO');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AER','BUENOS AIRES - AEROPARQUE J. NEWBERY','CIUDAD AUTONOMA DE BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AGI','PIEDRA DEL AGUILA','NEUQUEN');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AGR','ALTA GRACIA','CORDOBA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AII','CHACABUCO - LAS DOS A','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AJA','LA LAJA','SAN JUAN');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ALC','AMEGHINO - LA CHACRA','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ALL','ALLEN','RIO NEGRO');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ALR','ALEJANDRO ROCA','CORDOBA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ALT','CRUZ ALTA','CÓRDOBA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ALV','ALVEAR - AGROALVEAR SRL','SANTA FE');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AMA','ROBERTS - LA AMALIA','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AME','AMEGHINO - SIGFRIDO ROHR','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AMG','AMEGHINO','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ANA','PARANA- AEROCLUB','ENTRE RIOS');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AND','ANDALGALA','CATAMARCA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('APO','APOSTOLES','MISIONES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ARB','ARRIBEÑOS','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ARS','ALTO RIO SENGUERR - D. C. SZLAPELIS','CHUBUT');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ARY','ARROYITO - ARCOR','CORDOBA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ATE','ZARATE','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('ATN','TRENQUE LAUQUEN - LA ARGENTINA','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AUL','AMEGHINO - AUGUSTO LEGUIZAMÓN','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AVA','ALVEAR - AEROPARQUE ROSARIO','SANTA FE');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AVL','AVELLANEDA - PRESIDENTE AVELLANEDA','SANTA FE');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('AYA','AYACUCHO','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BAD','BERÓN DE ASTRADA/DINALUCA S.A.','CORRIENTES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BAI','LAGO BUENOS AIRES','SANTA CRUZ');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BAL','BALCARCE','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BAL','BALCARCE','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BAR','SAN CARLOS DE BARILOCHE','RÍO NEGRO');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BAS','BASAVILBASO','ENTRE RÍOS');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BCA','BAHÍA BLANCA/COMANDANTE ESPORA','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BDO','BARADERO','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BDR','BAHÍA DORADA','RÍO NEGRO');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BEL','BELL VILLE','CÓRDOBA');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BEX','BARADERO','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BHB','BAHÍA BLANCA/AEROCLUB','BUENOS AIRES');
+INSERT INTO aerocargo_trafico_argentina.aeropuertos (`ID_AEROPUERTOS`,`NOMBRE`,`UBICACION`) VALUES ('BHT','BRAGADO/HARAS TRELLIRIS','BUENOS AIRES');
+
+INSERT INTO aerocargo_trafico_argentina.movimientos (`ID_MOVIMIENTOS`,`TIPO_DE_MOVIMIENTO`) VALUES ('1N','NACIONAL');
+INSERT INTO aerocargo_trafico_argentina.movimientos (`ID_MOVIMIENTOS`,`TIPO_DE_MOVIMIENTO`) VALUES ('2I','INTERNACIONAL');
+
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0002','2020-02-01','22:36:43','SACO','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0010','2019-06-14','00:45:40','SADM','AR-0175','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0039','2019-04-04','05:23:02','SABE','SACO','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0079','2019-06-06','08:52:16','SAAR','SARI','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0087','2019-12-03','03:35:46','SAZR','SAZR','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0096','2019-01-18','02:24:54','SAAV','SADF','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0099','2020-01-19','14:37:10','SACO','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0119','2019-06-14','17:32:39','SASA','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0131','2019-07-20','10:15:28','SBGL','SAEZ','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0141','2018-01-30','12:19:33','SABE','SACO','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0164','2018-11-26','18:43:46','SAEZ','SADF','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0182','2018-06-29','02:43:37','SAEZ','SAWH','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0184','2020-01-09','16:09:07','AR-0296','SADF','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0202','2019-07-08','23:12:54','SAMM','SAMM','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0221','2020-03-14','09:41:34','SAZS','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0229','2019-04-25','08:56:56','SAWC','SAWH','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0231','2019-02-27','15:52:31','SABE','SAME','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0268','2019-09-25','07:14:41','SADF','SAZH','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0276','2019-06-03','22:14:26','SADF','SADF','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0281','2019-06-19','10:20:04','SAEZ','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0304','2019-05-21','06:08:58','SANU','SADF','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0307','2020-01-29','01:13:29','SAEZ','LIRF','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0319','2019-12-25','23:45:39','SAWG','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0344','2018-01-13','00:09:11','SA16','SAMM','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0345','2018-10-27','20:58:33','SARI','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0353','2019-08-16','23:26:34','AR-0383','SADF','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0356','2020-01-06','05:34:23','SABE','SAZM','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0378','2019-02-07','13:04:33','SABE','SUMU','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0391','2018-04-30','20:14:22','SAVT','SAEZ','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0393','2019-07-04','05:01:40','SABE','SBGL','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0403','2019-02-08','15:40:48','SAVT','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0420','2019-05-26','21:03:03','SADF','SADF','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0424','2019-04-23','18:38:47','SAME','SABE','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0429','2020-02-04','11:29:01','SABE','SAZY','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0441','2020-03-29','01:28:51','SABE','SAVC','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0445','2018-05-26','22:30:57','SAEZ','KMIA','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0449','2018-10-22','04:14:36','SABE','SBGR','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0471','2019-09-16','10:06:42','SAEZ','SBGR','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0474','2018-04-24','16:14:56','SABE','SAZB','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0484','2019-12-23','16:52:01','SAZS','SAEZ','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0506','2018-03-03','02:02:42','SAZM','SABE','1N');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0514','2019-12-28','12:34:51','AR-0175','SADM','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0520','2018-01-21','22:55:37','SABE','SANL','2I');
+INSERT INTO aerocargo_trafico_argentina.vuelos (`CODIGO_DE_VUELO`,`FECHA`,`HORA`,`ORIGEN`,`DESTINO`,`ID_MOVIMIENTO`) VALUES ('v-0541','2018-11-13','10:22:43','SABE','SASA','1N');
+
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-094-7784','Nahum','solo','v-6575');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-286-4070','Bronson','jcb','v-1634');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-298-0918','Brittan','visa','v-0096');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-334-4315','Margarete','americanexpress','v-8588');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-353-9708','Benedick','china-unionpay','v-7697');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-475-2883','Carena','maestro','v-1586');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-597-4766','Cheri','switch','v-4499');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-649-7312','Stevena','jcb','v-8439');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-800-7841','Andromache','maestro','v-0096');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('00-975-8626','Scarface','maestro','v-2707');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('01-118-2169','Lynnell','jcb','v-2146');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('01-141-5571','Roana','jcb','v-2074');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('01-270-7384','Tremaine','visa-electron','v-4342');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('01-455-1859','Francisca','switch','v-1586');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('01-760-1803','Bradly','maestro','v-0557');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('01-965-3450','Mauricio','jcb','v-7728');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-037-9473','Tracee','visa-electron','v-4377');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-161-3464','Mable','visa-electron','v-5100');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-247-9367','Melissa','americanexpress','v-8810');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-319-8602','Byran','switch','v-4974');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-441-9432','Mandel','jcb','v-2358');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-508-1895','Sasha','jcb','v-0141');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-606-1880','Meryl','jcb','v-7753');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-607-4140','Shep','americanexpress','v-2270');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('02-639-6375','Jenna','jcb','v-1595');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('03-120-8859','Von','switch','v-0307');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('03-208-5956','Gusta','jcb','v-7217');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('03-563-0963','Sheppard','bankcard','v-5294');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('03-649-4564','Benton','jcb','v-8811');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('03-689-6797','Lock','bankcard','v-6576');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('03-784-3354','Maxwell','jcb','v-3702');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-017-7385','Felice','jcb','v-7240');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-079-4696','Erma','mastercard','v-1732');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-113-8216','Shadow','bankcard','v-2513');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-278-1555','Jon','maestro','v-9158');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-612-8177','Mauricio','bankcard','v-4723');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-664-2510','Sibel','americanexpress','v-8525');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-705-4013','Batholomew','visa-electron','v-5979');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('04-767-8395','Dreddy','diners-club-carte-blanche','v-1089');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('05-064-6308','Patten','laser','v-1586');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('05-276-3094','Indira','jcb','v-2039');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('05-361-5809','Pace','mastercard','v-0403');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('05-486-3858','Shermy','visa-electron','v-9936');
+INSERT INTO aerocargo_trafico_argentina.pasajeros (`DNI`,`NOMBRE`,`MEDIOS_DE_PAGO`,`CODIGO_DE_VUELO`) VALUES ('05-540-5682','Hayward','mastercard','v-2689');
+
+CREATE VIEW `mastercard_users` AS
+    SELECT 
+        `pasajeros`.`DNI` AS `dni`,
+        `pasajeros`.`NOMBRE` AS `nombre`,
+        `pasajeros`.`MEDIOS_DE_PAGO` AS `medios_de_pago`
+    FROM
+        `pasajeros`
+    WHERE
+        (`pasajeros`.`MEDIOS_DE_PAGO` = 'mastercard')
+        
+ CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `vuelos_nacionales` AS
+    SELECT 
+        `vuelos`.`ID_MOVIMIENTO` AS `id_movimiento`,
+        `vuelos`.`CODIGO_DE_VUELO` AS `CODIGO_DE_VUELO`
+    FROM
+        `vuelos`
+    WHERE
+        (`vuelos`.`ID_MOVIMIENTO` = '1N')
+        
+   CREATE VIEW `aeropuertos_buenosaires`
+ AS SELECT aeropuertos.nombre, aeropuertos.ubicacion
+ FROM
+  aeropuertos
+  WHERE
+  aeropuertos.nombre= "Buenos Aires";
+  
+    CREATE VIEW `vuelos_diurno`
+  AS SELECT vuelos.hora, vuelos.codigo_de_vuelo
+  FROM 
+  vuelos
+  WHERE vuelos.hora between 070000 and 200000;
+  
+  CREATE DEFINER=`root`@`localhost` FUNCTION `ver_destino`(vCODIGO_DE_VUELO VARCHAR (50)) RETURNS varchar(50) CHARSET utf8mb4
+    READS SQL DATA
+BEGIN 
+DECLARE resultado VARCHAR (50) ;
+SET RESULTADO = (SELECT DESTINO FROM aerocargo_trafico_argentina.vuelos WHERE CODIGO_DE_VUELO = vCODIGO_DE_VUELO);
+RETURN resultado;
+END
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `ubicacion_de_aeropuerto`(aerolineaid varchar (50)) RETURNS varchar(50) CHARSET utf8mb4
+    READS SQL DATA
+BEGIN
+DECLARE resultado varchar (50);
+set resultado = ( SELECT concat (aerolineas.nombre_aerolinea,' ',aeropuertos.ubicacion) 
+from aerocargo_trafico_argentina.aerolineas 
+inner join aerocargo_trafico_argentina.aeropuertos 
+on aerocargo_trafico_argentina.aerolineas.ID_AEROPUERTOS = aerocargo_trafico_argentina.aeropuertos .ID_AEROPUERTOS
+where ID_AEROLINEA = aerolineaid);
+RETURN resultado;
+END
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ordernar`(IN orderby CHAR(20))
+BEGIN
+	if orderby <> '' then
+		set @ordenar = concat('ORDER BY ', orderby);
+	else 
+		set @ordenar = '';
+    end if;
+    
+    set @clausula = concat('SELECT * FROM vuelos ', @ordenar);
+    
+    prepare ejecutar_sql from @clausula;
+    execute ejecutar_sql;
+    deallocate prepare ejecutar_sql;
+END
+
+DELIMITER $$
+CREATE PROCEDURE `agregacion`(IN dni1 char(60), IN nombre1 char(200), metodo1 char(200), codigovuelo1 char(200))
+BEGIN
+	IF dni1 <> pasajeros.DNI || codigovuelo1 <> pasajeros.CODIGO_DE_VUELO THEN
+		INSERT INTO pasajeros (DNI, NOMBRE, MEDIOS_DE_PAGO, CODIGO_DE_VUELO) VALUES (dni1, nombre1, metodo1,codigovuelo1);
+    ELSE
+		DELETE FROM pasajeros WHERE DNI = dni1;
+	END IF;
+END
+$$
+
+CREATE TABLE IF NOT EXISTS VUELOSespejo(
+CODIGO_DE_VUELO varchar(200) PRIMARY KEY,
+FECHA DATE,
+HORA TIME,
+ORIGEN VARCHAR(200),
+DESTINO VARCHAR(200),
+ID_MOVIMIENTO VARCHAR(200),
+FOREIGN KEY (ID_MOVIMIENTO) REFERENCES aerocargo_trafico_argentina.MOVIMIENTOS(ID_MOVIMIENTOS)
+);
+
+CREATE TRIGGER `bef_ins_vuelos`
+BEFORE INSERT ON aerocargo_trafico_argentina.vuelos FOR EACH ROW
+INSERT INTO aerocargo_trafico_argentina.vuelosespejo (CODIGO_DE_VUELO, FECHA, HORA, ORIGEN, DESTINO, ID_MOVIMIENTO)
+VALUES (NEW.CODIGO_DE_VUELO, NEW.FECHA, NEW.HORA, NEW.ORIGEN, NEW.DESTINO, NEW.ID_MOVIMIENTO, session_user(), current_date(), current_time())
+
+CREATE TABLE IF NOT EXISTS PASAJEROSespejo(
+DNI INT NOT NULL PRIMARY KEY,
+NOMBRE VARCHAR(200),
+MEDIOS_DE_PAGO VARCHAR(200),
+CODIGO_DE_VUELO VARCHAR(200),
+FOREIGN KEY (CODIGO_DE_VUELO) REFERENCES aerocargo_trafico_argentina.VUELOS(CODIGO_DE_VUELO)
+);
+
+CREATE TRIGGER `nuevospasajeros`
+AFTER INSERT ON aerocargo_trafico_argentina.pasajeros FOR EACH ROW
+INSERT INTO aerocargo_trafico_argentina.pasajerosespejo
+VALUES (session_user(), NEW.DNI, NEW.NOMBRE, NEW.MEDIOS_DE_PAGO, NEW.CODIGO_DE_VUELO, current_date(), current_time());
